@@ -28,12 +28,12 @@ PyQt4/PySide study project.
 
 
 %prep
-%setup -q yanma
+%setup -q
 
 %build
 %install
 ls -la
-mkdir -p %(buildroot)/usr/share/yanma
+mkdir -p $RPM_BUILD_ROOT/usr/share/yanma
 
 #%{_install} -d %(buildroot)/usr/share/yanma
 %{_mv} *.py %(buildroot)/usr/share/yanma
