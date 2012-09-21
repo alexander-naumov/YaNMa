@@ -20,10 +20,6 @@ Summary:	PySide NetworkManager applet
 Url:		https://github.com/alexander-naumov/YaNMa
 Group:		Network
 Source:		%{name}-%{version}.tar.gz
-Patch:
-BuildRequires:
-PreReq:
-Provides:
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 %description
