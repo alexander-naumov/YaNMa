@@ -33,6 +33,8 @@ PyQt4/PySide study project.
 %build
 %install
 ls -la
+mkdir -p %(buildroot)/usr/share/yanma
+
 #%{_install} -d %(buildroot)/usr/share/yanma
 %{_mv} *.py %(buildroot)/usr/share/yanma
 
