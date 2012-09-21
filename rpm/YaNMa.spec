@@ -19,7 +19,7 @@ License:	GPLv2
 Summary:	PySide NetworkManager applet
 Url:		https://github.com/alexander-naumov/YaNMa
 Group:		Network
-Source:		
+Source:		%{name}-%{version}.tar.gz
 Patch:
 BuildRequires:
 PreReq:
