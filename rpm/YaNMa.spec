@@ -38,9 +38,6 @@ mkdir -p $RPM_BUILD_ROOT/usr/share/yanma
 #%{_install} -d %(buildroot)/usr/share/yanma
 mv *.py $RPM_BUILD_ROOT/usr/share/yanma
 
-ls -la %(buildroot)/usr/share/yanma
-
-
 %clean
 %{?buildroot:%__rm -rf "%{buildroot}"}
 
@@ -51,7 +48,7 @@ ls -la %(buildroot)/usr/share/yanma
 %files
 %defattr(-,root,root)
 %doc ChangeLog README COPYING
-
+/usr/share/yanma/*
 
 
 %changelog
