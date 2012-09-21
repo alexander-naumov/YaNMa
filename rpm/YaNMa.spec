@@ -36,7 +36,7 @@ ls -la
 mkdir -p $RPM_BUILD_ROOT/usr/share/yanma
 
 #%{_install} -d %(buildroot)/usr/share/yanma
-%{_mv} *.py %(buildroot)/usr/share/yanma
+mv *.py $RPM_BUILD_ROOT/usr/share/yanma
 
 ls -la %(buildroot)/usr/share/yanma
 
