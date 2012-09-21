@@ -32,7 +32,12 @@ PyQt4/PySide study project.
 
 %build
 %install
+ls -la
 %{_install} -d %(buildroot)/usr/share/yanma
+
+
+ls -la %(buildroot)/usr/share/yanma
+
 
 %clean
 %{?buildroot:%__rm -rf "%{buildroot}"}
