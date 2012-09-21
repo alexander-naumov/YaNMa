@@ -16,7 +16,7 @@ Name:           YaNMa
 Version:
 Release:
 License:	GPLv2
-Summary:
+Summary:	PySide NetworkManager applet
 Url:		https://github.com/alexander-naumov/YaNMa
 Group:		Network
 Source:		
