@@ -37,6 +37,7 @@ mkdir -p $RPM_BUILD_ROOT/usr/share/yanma
 
 #%{_install} -d %(buildroot)/usr/share/yanma
 mv *.py $RPM_BUILD_ROOT/usr/share/yanma
+mv images $RPM_BUILD_ROOT/usr/share/yanma
 
 %clean
 %{?buildroot:%__rm -rf "%{buildroot}"}
