@@ -47,7 +47,7 @@ mv *.py $RPM_BUILD_ROOT/usr/share/yanma
 
 %files
 %defattr(-,root,root)
-%doc ChangeLog README COPYING
+#%doc ChangeLog README COPYING
 /usr/share/yanma/*
 
 
