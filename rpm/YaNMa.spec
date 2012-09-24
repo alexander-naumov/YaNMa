@@ -49,10 +49,12 @@ mv images $RPM_BUILD_ROOT/usr/share/yanma
 %files
 %defattr(-,root,root)
 #%doc ChangeLog README COPYING
+/usr/share/yanma/
 /usr/share/yanma/info.py
 /usr/share/yanma/settings.py
 /usr/share/yanma/yanma_tray.py
 
+/usr/share/yanma/images/
 /usr/share/yanma/images/wireless.png
 /usr/share/yanma/images/wired.png
 /usr/share/yanma/images/settings.png
