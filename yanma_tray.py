@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-#   Copyright 2012-2013 Alexander Naumov <alexander_naumov@opensuse.org>
+#   Copyright 2012-2014 Alexander Naumov <alexander_naumov@opensuse.org>
 
 #   This program is free software; you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License Version 2 as
@@ -16,11 +16,10 @@ import sys, info
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 
-show_info =  "Interface\t" + info.name + "\n" \
-	     "IP Addr\t"  + info.IP4 + "\n" \
-		 "MAC Addr\t" + info.HwAddress + "\n" \
-	     "Driver\t"   + info.driver
-
+#show_info = "Interface\t" + info.data['Interface'] + "\n" \
+#	     	"IP Addr  \t" + info.IP4 + "\n" \
+#			"MAC Addr \t" + info.data['HwAddress'] + "\n" \
+#			"Driver   \t" + info.data['Driver']
 
 class TrayBase(QSystemTrayIcon):
 	def __init__(self, parent=None):
@@ -31,9 +30,9 @@ class TrayBase(QSystemTrayIcon):
 
 		self.tray = QSystemTrayIcon(self)
 		self.trayMenu = QMenu()
-		self.tray.setToolTip(show_info)
+#		self.tray.setToolTip(show_info)
 		
-		self.action_wired    = QAction(QIcon("images/wired.png"), info.name+u' '+info.IP4, self)
+		self.action_wired    = QAction(QIcon("images/wired.png"), info.interfaces[0]['Interface']+' '+info.interfaces[0]['Ip4Address'], self)
 		self.action_wireless = QAction(QIcon("images/wireless.png"), u'Wireless Networks', self)
 		self.action_settings = QAction(QIcon("images/settings.png"), u'Network Settings', self)
 		self.action_quit     = QAction(QIcon("images/quit.png"), u'Quit', self)
