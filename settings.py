@@ -20,13 +20,13 @@ class NetworkSettings(QDialog):
 		self.setGeometry(400, 500, 250, 150)
 		self.setWindowTitle('Network Settings')
 
-		label_interface = QLabel(' Interface\t'+ info.data['Interface'], self)
+		label_interface = QLabel(' Interface\t'+ info.interfaces[0]['Interface'], self)
 #		label_type      = QLabel(' Type\t\t' + str(info.data['DeviceType']), self)
 		#label_state     = QLabel(' State\t\t' + str(info.state), self)
-		label_ip        = QLabel(' IP\t\t'+ info.IP4, self)
+		label_ip        = QLabel(' IP\t\t'+ info.interfaces[0]['Ip4Address'], self)
 		##label_gateway	= QLabel(' Gateway\t\t' + info.gateway, self)
-		label_mac       = QLabel(' MAC\t\t'+ info.data['HwAddress'], self)
-		label_driver    = QLabel(' Driver\t\t'+ info.data['Driver'], self)
+		label_mac       = QLabel(' MAC\t\t'+ info.interfaces[0]['HwAddress'], self)
+		label_driver    = QLabel(' Driver\t\t'+ info.interfaces[0]['Driver'], self)
 		#label_addr		= QLabel(' Addr\t\t' + info.addr_dotted, self)
 
 
