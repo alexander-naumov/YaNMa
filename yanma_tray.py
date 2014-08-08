@@ -32,19 +32,20 @@ class TrayBase(QSystemTrayIcon):
 		self.trayMenu = QMenu()
 		self.tray.setToolTip(show_info)
 		
-		self.action_wired    = QAction(QIcon("images/wired.png"), info.interfaces[0]['Interface']+' '+info.interfaces[0]['Ip4Address'], self)
+		#self.action_wired    = QAction(QIcon("images/wired.png"), info.interfaces[0]['Interface']+' '+info.interfaces[0]['Ip4Address'], self)
+		self.action_new		 = QAction(QIcon("images/wired.png"), u'Create new connection', self)
 		self.action_wireless = QAction(QIcon("images/wireless.png"), u'Wireless Networks', self)
 		self.action_settings = QAction(QIcon("images/settings.png"), u'Network Settings', self)
 		self.action_quit     = QAction(QIcon("images/quit.png"), u'Quit', self)
 
-		self.trayMenu.addAction(self.action_wired)
+		self.trayMenu.addAction(self.action_new)
 		self.trayMenu.addSeparator()
 		self.trayMenu.addAction(self.action_wireless)
 		self.trayMenu.addSeparator()
 		self.trayMenu.addAction(self.action_settings)
 		self.trayMenu.addAction(self.action_quit)
 
-		self.connect(self.action_wired, SIGNAL("triggered()"), self.wired)
+		self.connect(self.action_new, SIGNAL("triggered()"), self.new_connection)
 		self.connect(self.action_wireless, SIGNAL("triggered()"), self.wireless)
 		self.connect(self.action_settings, SIGNAL("triggered()"), self.net_settings)
 		self.connect(self.action_quit, SIGNAL("triggered()"), self.quit)
@@ -55,7 +56,7 @@ class TrayBase(QSystemTrayIcon):
 		
 		self.tray.show()
 		
-	def wired(self):
+	def new_connection(self):
 		pass
 
 	def wireless(self):

@@ -44,7 +44,7 @@ for dev in prop_iface1.GetDevices():
 	prop_iface = dbus.Interface(dev_proxy, "org.freedesktop.DBus.Properties")
 
 	interface = prop_iface.Get("org.freedesktop.NetworkManager.Device", "Interface")
-	if (interface == "wlo1") or (interface == "enp0s26u1u5i6"):
+	if (interface == "wlo1"):
 		continue
 
 	data = {}
@@ -54,7 +54,6 @@ for dev in prop_iface1.GetDevices():
 	data['Capabilities']= prop_iface.Get("org.freedesktop.NetworkManager.Device", "Capabilities")
 
 	data['Ip4Address']  = prop_iface.Get("org.freedesktop.NetworkManager.Device", "Ip4Address")
-	print data['Ip4Address']
 	data['Ip4Address']  = str(IP4Addr(data['Ip4Address']))
 
 	data['state']		= prop_iface.Get("org.freedesktop.NetworkManager.Device", "State")
