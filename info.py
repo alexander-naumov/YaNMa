@@ -11,7 +11,7 @@
 #   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #   GNU General Public License for more details.
 
-import dbus
+import dbus, sys
 import binascii
 
 class IP4Addr(object):
@@ -28,7 +28,12 @@ class IP4Addr(object):
 
 bus = dbus.SystemBus()
 
-nm = bus.get_object("org.freedesktop.NetworkManager", "/org/freedesktop/NetworkManager")
+try:
+	nm = bus.get_object("org.freedesktop.NetworkManager", "/org/freedesktop/NetworkManager")
+except:
+	print "NetworkManager is not running..."
+	sys.exit()
+
 prop_iface = dbus.Interface(nm, "org.freedesktop.DBus.Properties")
 i = prop_iface.GetAll('org.freedesktop.NetworkManager')
 
