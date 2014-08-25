@@ -16,7 +16,7 @@ import sys, info
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 
-show_info = "Interface\t" + info.interfaces[0]['Interface'] + "\n" \
+show_info =	"Interface\t" + info.interfaces[0]['Interface'] + "\n" \
 			"IP Addr  \t" + info.interfaces[0]['Ip4Address'] + "\n" \
 			"MAC Addr \t" + info.interfaces[0]['HwAddress'] + "\n" \
 			"Driver   \t" + info.interfaces[0]['Driver']
@@ -31,7 +31,7 @@ class TrayBase(QSystemTrayIcon):
 		self.tray = QSystemTrayIcon(self)
 		self.trayMenu = QMenu()
 		self.tray.setToolTip(show_info)
-		
+
 		#self.action_wired    = QAction(QIcon("images/wired.png"), info.interfaces[0]['Interface']+' '+info.interfaces[0]['Ip4Address'], self)
 		self.action_new		 = QAction(QIcon("/usr/share/icons/oxygen/64x64/devices/network-wired.png"), u'Create new connection', self)
 		self.action_wireless = QAction(QIcon("/usr/share/icons/oxygen/64x64/devices/network-wireless.png"), u'Wireless Networks', self)

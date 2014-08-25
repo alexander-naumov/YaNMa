@@ -32,6 +32,7 @@ class NetworkSettings(QDialog):
 
 		self.setGeometry(400, 500, 250, 150)
 		self.setWindowTitle('Network Settings')
+		self.setWindowIcon(QIcon('/usr/share/icons/oxygen/64x64/categories/applications-science.png'))
 		mainLayout = QVBoxLayout()
 
 		for iface in info.interfaces:
