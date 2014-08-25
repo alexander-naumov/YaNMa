@@ -61,7 +61,7 @@ for dev in prop_iface1.GetDevices():
 	data['Ip4Address']  = prop_iface.Get("org.freedesktop.NetworkManager.Device", "Ip4Address")
 	data['Ip4Address']  = str(IP4Addr(data['Ip4Address']))
 
-	data['state']		= prop_iface.Get("org.freedesktop.NetworkManager.Device", "State")
+	data['State']		= prop_iface.Get("org.freedesktop.NetworkManager.Device", "State")
 	data['Ip4Config']	= prop_iface.Get("org.freedesktop.NetworkManager.Device", "Ip4Config")
 	data['Dhcp4Config'] = prop_iface.Get("org.freedesktop.NetworkManager.Device", "Dhcp4Config")
 	data['Ip6Config']	= prop_iface.Get("org.freedesktop.NetworkManager.Device", "Ip6Config")

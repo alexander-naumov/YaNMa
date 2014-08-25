@@ -21,52 +21,66 @@ class NetworkSettings(QDialog):
 		self.setWindowTitle('Network Settings')
 		mainLayout = QVBoxLayout()
 
+		#configure = QPushButton('Configure', self)
+		quit      = QPushButton('Ok',        self)
+				        
+		#self.connect(configure, SIGNAL('clicked()'), self.accept)
+		self.connect(quit,      SIGNAL('clicked()'), self.accept)
+
 		for iface in info.interfaces:
 			#print iface
 			label_interface = QLabel(' Interface\t'+ iface['Interface'], self)
-		#label_type      = QLabel(' Type\t\t' + str(info.data['DeviceType']), self)
-		#label_state     = QLabel(' State\t\t' + str(info.state), self)
+			label_type      = QLabel(' Type\t\t' + str(info.data['DeviceType']), self)
+			label_state		= QLabel(' State\t\t' + str(info.data['State']), self)
 			label_ip        = QLabel(' IP\t\t'+ iface['Ip4Address'], self)
-		##label_gateway	= QLabel(' Gateway\t\t' + info.gateway, self)
+			#label_gateway	= QLabel(' Gateway\t\t' + info.gateway, self)
+			#label_conf		= QLabel(' IpInterface\t\t' + iface['IpInterface'], self)
 			label_mac       = QLabel(' MAC\t\t'+ iface['HwAddress'], self)
 			label_driver    = QLabel(' Driver\t\t'+ iface['Driver'], self)
-		#label_addr		= QLabel(' Addr\t\t' + info.addr_dotted, self)
+			#label_addr		= QLabel(' Addr\t\t' + info.addr_dotted, self)
 
+			vLayoutInfo = QVBoxLayout()
+			vLayoutInfo.addWidget(label_interface)
+			vLayoutInfo.addWidget(label_type)
+			vLayoutInfo.addWidget(label_state)
+			#vLayout.addWidget(label_conf)
+			vLayoutInfo.addWidget(label_ip)
+			vLayoutInfo.addWidget(label_mac)
+			vLayoutInfo.addWidget(label_driver)
 
+			vLayoutIface = QVBoxLayout()
 
-			vLayout = QVBoxLayout()
-			vLayout.addWidget(label_interface)
-			vLayout.addWidget(label_ip)
-			vLayout.addWidget(label_mac)
-			vLayout.addWidget(label_driver)
+			image_label = QLabel(" ")
+			image_label.setPixmap(QPixmap.fromImage(QImage('/usr/share/icons/oxygen/64x64/devices/network-wired-activated.png')))
+
+			configure = QPushButton('Configure', self)
+			self.connect(configure, SIGNAL('clicked()'), self.accept)
+
+			vLayoutIface.addWidget(image_label)
+			vLayoutIface.addWidget(configure)
+
+			hLayoutIface = QHBoxLayout()
+			hLayoutIface.addLayout(vLayoutInfo)
+			hLayoutIface.addLayout(vLayoutIface)
+
 			group = QGroupBox()
-			group.setLayout(vLayout)
+			group.setLayout(hLayoutIface)
 			mainLayout.addWidget(group)
 
-		configure = QPushButton('Configure', self)
-		quit      = QPushButton('Ok',        self)
+
+		#configure = QPushButton('Configure', self)
+		#quit      = QPushButton('Ok',        self)
 		
-		self.connect(configure, SIGNAL('clicked()'), self.accept)
-		self.connect(quit,      SIGNAL('clicked()'), self.accept)
+		#self.connect(configure, SIGNAL('clicked()'), self.accept)
+		#self.connect(quit,      SIGNAL('clicked()'), self.accept)
 		
 		hLayout = QHBoxLayout()
-		hLayout.addWidget(configure)
+		hLayout.addLayout(hLayoutIface)
 		hLayout.addWidget(quit)
 
-		#mainLayout = QVBoxLayout()
-		#mainLayout.addWidget(label_type)
-		#mainLayout.addWidget(label_state)
-		#mainLayout.addWidget(label_interface)
-		#mainLayout.addWidget(label_ip)
-		#mainLayout.addWidget(label_mac)
-		#mainLayout.addWidget(label_driver)
-		##mainLayout.addWidget(label_addr)
 		mainLayout.addLayout(hLayout)
 
 		self.setLayout(mainLayout)
 
-#app = QtGui.QApplication(sys.argv)
 ns = NetworkSettings()
-#qb.show()
-#sys.exit(app.exec_())
 

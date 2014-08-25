@@ -17,7 +17,7 @@ from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 
 show_info = "Interface\t" + info.interfaces[0]['Interface'] + "\n" \
-	     	"IP Addr  \t" + info.interfaces[0]['Ip4Address'] + "\n" \
+			"IP Addr  \t" + info.interfaces[0]['Ip4Address'] + "\n" \
 			"MAC Addr \t" + info.interfaces[0]['HwAddress'] + "\n" \
 			"Driver   \t" + info.interfaces[0]['Driver']
 
