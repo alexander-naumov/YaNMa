@@ -70,9 +70,7 @@ class NetworkSettings(QDialog):
 					image_label.setPixmap(QPixmap.fromImage(QImage('/usr/share/icons/oxygen/64x64/devices/network-wired-activated.png')))
 				
 			elif IfaceType == 2: 
-				if IfaceState == 20:
-					image_label.setPixmap(QPixmap.fromImage(QImage('/usr/share/icons/oxygen/64x64/devices/network-wireless-disconnected.png')))
-				elif IfaceState == 30:
+				if IfaceState == 20 or IfaceState == 30:
 					image_label.setPixmap(QPixmap.fromImage(QImage('/usr/share/icons/oxygen/64x64/devices/network-wireless-disconnected.png')))
 				elif IfaceState == 100:
 					image_label.setPixmap(QPixmap.fromImage(QImage('/usr/share/icons/oxygen/64x64/devices/network-wireless.png')))
@@ -88,7 +86,7 @@ class NetworkSettings(QDialog):
 
 			configure = QPushButton('Configure', self)
 			configure.setIcon(QIcon('/usr/share/icons/oxygen/64x64/actions/configure.png'))
-			self.connect(configure, SIGNAL('clicked()'), self.accept)
+			self.connect(configure, SIGNAL('clicked()'), self.configure)
 
 			vLayoutIface.addWidget(image_label)
 			vLayoutIface.addWidget(configure)
@@ -111,6 +109,10 @@ class NetworkSettings(QDialog):
 		mainLayout.addLayout(hLayout)
 
 		self.setLayout(mainLayout)
+
+	def configure(self):
+		import configure
+		configure.conf.show()
 
 ns = NetworkSettings()
 

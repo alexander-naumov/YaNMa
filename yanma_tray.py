@@ -33,10 +33,10 @@ class TrayBase(QSystemTrayIcon):
 		self.tray.setToolTip(show_info)
 		
 		#self.action_wired    = QAction(QIcon("images/wired.png"), info.interfaces[0]['Interface']+' '+info.interfaces[0]['Ip4Address'], self)
-		self.action_new		 = QAction(QIcon("images/wired.png"), u'Create new connection', self)
-		self.action_wireless = QAction(QIcon("images/wireless.png"), u'Wireless Networks', self)
-		self.action_settings = QAction(QIcon("images/settings.png"), u'Network Settings', self)
-		self.action_quit     = QAction(QIcon("images/quit.png"), u'Quit', self)
+		self.action_new		 = QAction(QIcon("/usr/share/icons/oxygen/64x64/devices/network-wired.png"), u'Create new connection', self)
+		self.action_wireless = QAction(QIcon("/usr/share/icons/oxygen/64x64/devices/network-wireless.png"), u'Wireless Networks', self)
+		self.action_settings = QAction(QIcon("/usr/share/icons/oxygen/64x64/categories/preferences-system.png"), u'Network Settings', self)
+		self.action_quit     = QAction(QIcon("/usr/share/icons/oxygen/64x64/actions/system-shutdown.png"), u'Quit', self)
 
 		self.trayMenu.addAction(self.action_new)
 		self.trayMenu.addSeparator()
@@ -50,7 +50,8 @@ class TrayBase(QSystemTrayIcon):
 		self.connect(self.action_settings, SIGNAL("triggered()"), self.net_settings)
 		self.connect(self.action_quit, SIGNAL("triggered()"), self.quit)
 		
-		self.trayIcon = QIcon("images/applet_48x48.png")
+		#self.trayIcon = QIcon("images/applet_48x48.png")
+		self.trayIcon = QIcon("/usr/share/icons/oxygen/64x64/categories/applications-science.png")
 		self.tray.setContextMenu(self.trayMenu)
 		self.tray.setIcon(self.trayIcon)
 		
