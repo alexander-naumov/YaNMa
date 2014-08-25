@@ -49,8 +49,6 @@ for dev in prop_iface1.GetDevices():
 	prop_iface = dbus.Interface(dev_proxy, "org.freedesktop.DBus.Properties")
 
 	interface = prop_iface.Get("org.freedesktop.NetworkManager.Device", "Interface")
-	if (interface == "wlo1"):
-		continue
 
 	data = {}
 	data['Interface'] 	= interface
