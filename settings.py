@@ -32,12 +32,16 @@ class NetworkSettings(QDialog):
 			label_driver    = QLabel(' Driver\t\t'+ iface['Driver'], self)
 		#label_addr		= QLabel(' Addr\t\t' + info.addr_dotted, self)
 
+
+
 			vLayout = QVBoxLayout()
 			vLayout.addWidget(label_interface)
 			vLayout.addWidget(label_ip)
 			vLayout.addWidget(label_mac)
 			vLayout.addWidget(label_driver)
-			mainLayout.addLayout(vLayout)
+			group = QGroupBox()
+			group.setLayout(vLayout)
+			mainLayout.addWidget(group)
 
 		configure = QPushButton('Configure', self)
 		quit      = QPushButton('Ok',        self)
