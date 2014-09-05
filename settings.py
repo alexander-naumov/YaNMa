@@ -9,7 +9,7 @@
 #   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #   GNU General Public License for more details.
 
-import sys, info
+import sys, info, configure
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 
@@ -35,8 +35,12 @@ class NetworkSettings(QDialog):
 		self.setWindowIcon(QIcon('/usr/share/icons/oxygen/64x64/categories/applications-science.png'))
 		mainLayout = QVBoxLayout()
 
+		device_0 = None
+		device_1 = None
+		device_2 = None
+
+		devices = []
 		for iface in info.interfaces:
-			#print iface
 			IfaceState = int(iface['State'])        #https://developer.gnome.org/NetworkManager/unstable/spec.html#type-NM_DEVICE_STATE
 
 
@@ -87,7 +91,23 @@ class NetworkSettings(QDialog):
 
 			configure = QPushButton('Configure', self)
 			configure.setIcon(QIcon('/usr/share/icons/oxygen/64x64/actions/configure.png'))
-			self.connect(configure, SIGNAL('clicked()'), self.configure)
+
+			#self.connect(configure, SIGNAL('clicked()'), self.config)
+			#self.connect(configure, SIGNAL('clicked()'), lambda: self.config(iface['Interface']))
+
+			# sehr unintelligent! FIXME as quck as possible!
+			if not device_0:
+				device_0 = iface
+				self.connect(configure, SIGNAL('clicked()'), lambda: self.config(device_0))
+			elif device_0 and not device_1:
+				device_1 = iface
+				self.connect(configure, SIGNAL('clicked()'), lambda: self.config(device_1))
+			elif device_0 and device_1 and not device_2:
+				device_2 = iface
+				self.connect(configure, SIGNAL('clicked()'), lambda: self.config(device_2))
+
+#			self.connect(configure, SIGNAL('clicked()'), lambda: self.config(devices[len(devices)-1]))
+
 
 			vLayoutIface.addWidget(image_label)
 			vLayoutIface.addWidget(configure)
@@ -100,8 +120,8 @@ class NetworkSettings(QDialog):
 			group.setLayout(hLayoutIface)
 			mainLayout.addWidget(group)
 
-		quit = QPushButton('Ok',        self)
-		self.connect(quit,      SIGNAL('clicked()'), self.accept)
+		quit = QPushButton('Ok', self)
+		self.connect(quit, SIGNAL('clicked()'), self.accept)
 	
 		hLayout = QHBoxLayout()
 		hLayout.addLayout(hLayoutIface)
@@ -111,7 +131,8 @@ class NetworkSettings(QDialog):
 
 		self.setLayout(mainLayout)
 
-	def configure(self):
+	def config(self, iface):
+		print iface
 		import configure
 		configure.conf.show()
 

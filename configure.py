@@ -23,5 +23,4 @@ class InterfaceConfiguration(QDialog):
 		self.setGeometry(700, 700, 450, 250)
 		self.setWindowTitle('Interface Configuration')
 
-
 conf = InterfaceConfiguration()
