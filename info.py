@@ -37,8 +37,8 @@ except:
 prop_iface = dbus.Interface(nm, "org.freedesktop.DBus.Properties")
 i = prop_iface.GetAll('org.freedesktop.NetworkManager')
 
-print i['ActiveConnections'][0]
-print i['Connectivity']
+#print i['ActiveConnections'][0]
+#print i['Connectivity']
 
 nm1 = bus.get_object("org.freedesktop.NetworkManager", i['ActiveConnections'][0])
 prop_iface1 = dbus.Interface(nm, "org.freedesktop.NetworkManager")
@@ -72,6 +72,3 @@ for dev in prop_iface1.GetDevices():
 		data['HwAddress']   = prop_iface.Get("org.freedesktop.NetworkManager.Device.Wireless", "HwAddress")
 
 	interfaces.append(data)
-
-for i in interfaces:
-	print i

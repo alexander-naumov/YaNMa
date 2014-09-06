@@ -35,14 +35,8 @@ class NetworkSettings(QDialog):
 		self.setWindowIcon(QIcon('/usr/share/icons/oxygen/64x64/categories/applications-science.png'))
 		mainLayout = QVBoxLayout()
 
-		device_0 = None
-		device_1 = None
-		device_2 = None
-
-		devices = []
 		for iface in info.interfaces:
 			IfaceState = int(iface['State'])        #https://developer.gnome.org/NetworkManager/unstable/spec.html#type-NM_DEVICE_STATE
-
 
 			label_interface = QLabel(' Interface\t'+ iface['Interface'], self)
 			#label_type      = QLabel(' Type\t\t' + str(info.data['DeviceType']), self)
@@ -80,34 +74,19 @@ class NetworkSettings(QDialog):
 				elif IfaceState == 100:
 					image_label.setPixmap(QPixmap.fromImage(QImage('/usr/share/icons/oxygen/64x64/devices/network-wireless.png')))
 			
-			#elif IfaceType == 5:	#BT: The device is Bluetooth device that provides PAN or DUN capabilities.
-			#elif IfaceType == 8:	#MODEM: The device is a modem supporting one or more of analog telephone, CDMA/EVDO, GSM/UMTS/HSPA, or LTE standards to access a cellular or wireline data network.
-			#elif IfaceType == 9:	#INFINIBAND : The device is an IP-capable InfiniBand interface. 
-			#elif IfaceType == 11:	#VLAN: The device is a VLAN interface.
-			#elif IfaceType == 12:	#ADSL: The device is an ADSL device supporting PPPoE and PPPoATM protocols.
-			#elif IfaceType == 13:	#BRIDGE: The device is a bridge interface.
+			#elif IfaceType == 5:	# BT: The device is Bluetooth device that provides PAN or DUN capabilities.
+			#elif IfaceType == 8:	# MODEM: The device is a modem supporting one or more of analog telephone, CDMA/EVDO, GSM/UMTS/HSPA,
+									# or LTE standards to access a cellular or wireline data network.
+			#elif IfaceType == 9:	# INFINIBAND : The device is an IP-capable InfiniBand interface. 
+			#elif IfaceType == 11:	# VLAN: The device is a VLAN interface.
+			#elif IfaceType == 12:	# ADSL: The device is an ADSL device supporting PPPoE and PPPoATM protocols.
+			#elif IfaceType == 13:	# BRIDGE: The device is a bridge interface.
 			else:
 				print "The device type is unknown :(", IfaceType
 
 			configure = QPushButton('Configure', self)
 			configure.setIcon(QIcon('/usr/share/icons/oxygen/64x64/actions/configure.png'))
-
-			#self.connect(configure, SIGNAL('clicked()'), self.config)
-			#self.connect(configure, SIGNAL('clicked()'), lambda: self.config(iface['Interface']))
-
-			# sehr unintelligent! FIXME as quck as possible!
-			if not device_0:
-				device_0 = iface
-				self.connect(configure, SIGNAL('clicked()'), lambda: self.config(device_0))
-			elif device_0 and not device_1:
-				device_1 = iface
-				self.connect(configure, SIGNAL('clicked()'), lambda: self.config(device_1))
-			elif device_0 and device_1 and not device_2:
-				device_2 = iface
-				self.connect(configure, SIGNAL('clicked()'), lambda: self.config(device_2))
-
-#			self.connect(configure, SIGNAL('clicked()'), lambda: self.config(devices[len(devices)-1]))
-
+			self.connect(configure, SIGNAL('clicked()'), lambda x=iface, state=str(dic_state[IfaceState]): self.config(x, state))
 
 			vLayoutIface.addWidget(image_label)
 			vLayoutIface.addWidget(configure)
@@ -131,10 +110,11 @@ class NetworkSettings(QDialog):
 
 		self.setLayout(mainLayout)
 
-	def config(self, iface):
-		print iface
+	def config(self, iface, state):
+		print state
 		import configure
-		configure.conf.show()
+		conf = configure.InterfaceConfiguration(iface, state, self)
+		conf.exec_()
 
 ns = NetworkSettings()
 
