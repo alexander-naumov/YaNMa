@@ -1,6 +1,4 @@
-#!/usr/bin/env python
-
-#   Copyright 2011-2014 Alexander Naumov <alexander_naumov@opensuse.org>
+#   Copyright (C) 2011-2014 Alexander Naumov <alexander_naumov@opensuse.org>
 
 #   This program is free software; you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License Version 2 as
